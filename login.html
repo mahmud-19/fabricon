@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Sign Up - Fabricon.shop</title>
+    <!-- Google Sign-In -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <meta name="google-signin-client_id" content="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html">Fabricon<span>.shop</span></a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About Fabricon</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart <span class="cart-count">0</span></a></li>
+                </ul>
+                <div class="nav-icons">
+                    <a href="login.html" class="icon-link"><i class="fas fa-user"></i></a>
+                    <a href="cart.html" class="icon-link"><i class="fas fa-shopping-cart"></i><span class="cart-badge">0</span></a>
+                    <button class="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login/Signup Section -->
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-container">
+                <!-- Login Form -->
+                <div class="auth-form" id="loginForm">
+                    <h2>Welcome Back</h2>
+                    <p class="auth-subtitle">Login to your account</p>
+                    
+                    <form id="loginFormElement">
+                        <div class="form-group">
+                            <label for="loginEmail">Email Address</label>
+                            <input type="email" id="loginEmail" name="email" required autocomplete="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" name="password" required autocomplete="current-password">
+                        </div>
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="loginRemember" name="remember">
+                                Remember me
+                            </label>
+                            <a href="#" class="forgot-link">Forgot Password?</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;" id="loginBtn">Login</button>
+                    </form>
+
+                    <div class="auth-divider">
+                        <span>OR</span>
+                    </div>
+
+                    <div class="social-login">
+                        <div id="g_id_onload"
+                             data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
+                             data-callback="handleGoogleSignIn"
+                             data-auto_prompt="false">
+                        </div>
+                        <div class="g_id_signin"
+                             data-type="standard"
+                             data-size="large"
+                             data-theme="outline"
+                             data-text="continue_with"
+                             data-shape="rectangular"
+                             data-logo_alignment="left"
+                             data-width="100%">
+                        </div>
+                    </div>
+
+                    <p class="auth-switch">
+                        Don't have an account? <a href="#" onclick="toggleAuthForm(); return false;">Sign Up</a>
+                    </p>
+                </div>
+
+                <!-- Signup Form -->
+                <div class="auth-form" id="signupForm" style="display: none;">
+                    <h2>Create Account</h2>
+                    <p class="auth-subtitle">Join Fabricon.shop today</p>
+                    
+                    <form id="signupFormElement">
+                        <div class="form-group">
+                            <label for="signupFirstName">First Name</label>
+                            <input type="text" id="signupFirstName" name="firstName" required autocomplete="given-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="signupLastName">Last Name</label>
+                            <input type="text" id="signupLastName" name="lastName" required autocomplete="family-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="signupEmail">Email Address</label>
+                            <input type="email" id="signupEmail" name="email" required autocomplete="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPassword">Password</label>
+                            <input type="password" id="signupPassword" name="password" required autocomplete="new-password" minlength="8">
+                            <small style="color: #666; font-size: 0.85rem;">Minimum 8 characters</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupConfirmPassword">Confirm Password</label>
+                            <input type="password" id="signupConfirmPassword" name="confirmPassword" required autocomplete="new-password">
+                        </div>
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="signupTerms" name="terms" required>
+                                I agree to the <a href="#">Terms & Conditions</a>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;" id="signupBtn">Create Account</button>
+                    </form>
+
+                    <div class="auth-divider">
+                        <span>OR</span>
+                    </div>
+
+                    <div class="social-login">
+                        <div id="g_id_onload_signup"
+                             data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
+                             data-callback="handleGoogleSignIn"
+                             data-auto_prompt="false">
+                        </div>
+                        <div class="g_id_signin"
+                             data-type="standard"
+                             data-size="large"
+                             data-theme="outline"
+                             data-text="signup_with"
+                             data-shape="rectangular"
+                             data-logo_alignment="left"
+                             data-width="100%">
+                        </div>
+                    </div>
+
+                    <p class="auth-switch">
+                        Already have an account? <a href="#" onclick="toggleAuthForm(); return false;">Login</a>
+                    </p>
+                </div>
+
+                <!-- Benefits Section -->
+                <div class="auth-benefits">
+                    <h3>Why Join Fabricon?</h3>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>Exclusive Offers</h4>
+                            <p>Get access to member-only deals and discounts</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>Order Tracking</h4>
+                            <p>Track your orders in real-time</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>Wishlist</h4>
+                            <p>Save your favorite items for later</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>Fast Checkout</h4>
+                            <p>Save your details for quick purchases</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Fabricon.shop</h3>
+                    <p>Bringing comfort and confidence through fashion.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for exclusive offers</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Fabricon.shop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Toggle between login and signup forms
+        function toggleAuthForm() {
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            
+            if (loginForm.style.display === 'none') {
+                loginForm.style.display = 'block';
+                signupForm.style.display = 'none';
+            } else {
+                loginForm.style.display = 'none';
+                signupForm.style.display = 'block';
+            }
+        }
+
+        // Handle Google Sign-In
+        function handleGoogleSignIn(response) {
+            // Decode the JWT token
+            const credential = response.credential;
+            const payload = parseJwt(credential);
+            
+            // Extract user information
+            const googleData = {
+                token: credential,
+                google_id: payload.sub,
+                email: payload.email,
+                first_name: payload.given_name || '',
+                last_name: payload.family_name || '',
+                picture: payload.picture || ''
+            };
+
+            // Send to backend
+            fetch('php/auth.php?action=google-login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(googleData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showNotification(data.message || 'Login successful!');
+                    
+                    // Store user session
+                    localStorage.setItem('userSession', JSON.stringify({
+                        ...data.user,
+                        loggedIn: true,
+                        loginMethod: 'google',
+                        timestamp: new Date().toISOString()
+                    }));
+                    
+                    // Track event
+                    if (typeof trackEvent === 'function') {
+                        trackEvent('login_success', { method: 'google' });
+                    }
+                    
+                    // Redirect to home
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                } else {
+                    showNotification(data.error || 'Google login failed');
+                }
+            })
+            .catch(error => {
+                console.error('Google login error:', error);
+                showNotification('An error occurred during Google login');
+            });
+        }
+
+        // Parse JWT token
+        function parseJwt(token) {
+            try {
+                const base64Url = token.split('.')[1];
+                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                }).join(''));
+                return JSON.parse(jsonPayload);
+            } catch (e) {
+                console.error('Error parsing JWT:', e);
+                return {};
+            }
+        }
+
+        // Login Form Submission
+        document.getElementById('loginFormElement').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const remember = document.getElementById('loginRemember').checked;
+            const loginBtn = document.getElementById('loginBtn');
+            
+            // Disable button and show loading
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'Logging in...';
+            
+            // Send to backend
+            fetch('php/auth.php?action=login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                    remember: remember
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showNotification(data.message || 'Login successful!');
+                    
+                    // Store user session
+                    localStorage.setItem('userSession', JSON.stringify({
+                        ...data.user,
+                        loggedIn: true,
+                        loginMethod: 'email',
+                        timestamp: new Date().toISOString()
+                    }));
+                    
+                    // Track event
+                    if (typeof trackEvent === 'function') {
+                        trackEvent('login_success', { method: 'email' });
+                    }
+                    
+                    // Redirect to home
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                } else {
+                    showNotification(data.error || 'Login failed');
+                    loginBtn.disabled = false;
+                    loginBtn.textContent = 'Login';
+                }
+            })
+            .catch(error => {
+                console.error('Login error:', error);
+                showNotification('An error occurred during login');
+                loginBtn.disabled = false;
+                loginBtn.textContent = 'Login';
+            });
+        });
+
+        // Signup Form Submission
+        document.getElementById('signupFormElement').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('signupFirstName').value;
+            const lastName = document.getElementById('signupLastName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            const termsAccepted = document.getElementById('signupTerms').checked;
+            const signupBtn = document.getElementById('signupBtn');
+            
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                showNotification('Passwords do not match!');
+                return;
+            }
+            
+            // Validate password length
+            if (password.length < 8) {
+                showNotification('Password must be at least 8 characters');
+                return;
+            }
+            
+            // Validate terms accepted
+            if (!termsAccepted) {
+                showNotification('Please accept the Terms & Conditions');
+                return;
+            }
+            
+            // Disable button and show loading
+            signupBtn.disabled = true;
+            signupBtn.textContent = 'Creating Account...';
+            
+            // Send to backend
+            fetch('php/auth.php?action=register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    first_name: firstName,
+                    last_name: lastName,
+                    email: email,
+                    password: password,
+                    confirm_password: confirmPassword
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showNotification(data.message || 'Account created successfully!');
+                    
+                    // Store user session
+                    localStorage.setItem('userSession', JSON.stringify({
+                        ...data.user,
+                        loggedIn: true,
+                        loginMethod: 'email',
+                        timestamp: new Date().toISOString()
+                    }));
+                    
+                    // Track event
+                    if (typeof trackEvent === 'function') {
+                        trackEvent('signup_success', { method: 'email' });
+                    }
+                    
+                    // Redirect to home
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                } else {
+                    showNotification(data.error || 'Registration failed');
+                    signupBtn.disabled = false;
+                    signupBtn.textContent = 'Create Account';
+                }
+            })
+            .catch(error => {
+                console.error('Signup error:', error);
+                showNotification('An error occurred during registration');
+                signupBtn.disabled = false;
+                signupBtn.textContent = 'Create Account';
+            });
+        });
+
+        // Check if already logged in
+        window.addEventListener('DOMContentLoaded', function() {
+            const userSession = localStorage.getItem('userSession');
+            if (userSession) {
+                try {
+                    const session = JSON.parse(userSession);
+                    if (session.loggedIn) {
+                        // Verify session with backend
+                        fetch('php/auth.php?action=check-session')
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.logged_in) {
+                                // Already logged in, redirect to home
+                                window.location.href = 'index.html';
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Session check error:', error);
+                        });
+                    }
+                } catch (e) {
+                    console.error('Error parsing session:', e);
+                }
+            }
+        });
+    </script>
+    <style>
+        .auth-section {
+            padding: 4rem 0;
+            background-color: #f5f5f5;
+            min-height: 80vh;
+        }
+
+        .auth-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .auth-form {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .auth-form h2 {
+            margin-bottom: 0.5rem;
+            color: #000;
+        }
+
+        .auth-subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.875rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #F28B50;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .forgot-link {
+            color: #F28B50;
+            text-decoration: none;
+        }
+
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+        .auth-divider {
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .auth-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: #e0e0e0;
+        }
+
+        .auth-divider span {
+            background-color: white;
+            padding: 0 1rem;
+            position: relative;
+            color: #999;
+        }
+
+        .social-login {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .social-btn {
+            padding: 0.875rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            background-color: white;
+            cursor: pointer;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .social-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .social-btn.google {
+            color: #DB4437;
+        }
+
+        .social-btn.facebook {
+            color: #4267B2;
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-top: 2rem;
+            color: #666;
+        }
+
+        .auth-switch a {
+            color: #F28B50;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
+
+        .auth-benefits {
+            background: linear-gradient(135deg, #F28B50, #e07a3f);
+            color: white;
+            padding: 3rem;
+            border-radius: 10px;
+        }
+
+        .auth-benefits h3 {
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .benefit-item i {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-item h4 {
+            margin-bottom: 0.25rem;
+        }
+
+        .benefit-item p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .auth-container {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-form {
+                padding: 2rem;
+            }
+
+            .auth-benefits {
+                order: -1;
+            }
+        }
+    </style>
+</body>
+</html>
